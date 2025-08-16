@@ -57,7 +57,7 @@ def load_and_prepare_data():
         existing_cols_to_drop = [col for col in cols_to_drop if col in df.columns]
         if existing_cols_to_drop:
             df = df.drop(columns=existing_cols_to_drop)
-            st.warning(f"Removed specified columns: {existing_cols_to_drop}")
+            # st.warning(f"Removed specified columns: {existing_cols_to_drop}"
 
         # Data Quality Report
         with st.expander("🔍 Initial Data Quality Report", expanded=True):
@@ -68,13 +68,13 @@ def load_and_prepare_data():
             # Remove non-numeric columns
             non_numeric_cols = df.select_dtypes(exclude=['number']).columns
             if len(non_numeric_cols) > 0:
-                st.warning(f"Removing non-numeric columns: {list(non_numeric_cols)}")
+                # st.warning(f"Removing non-numeric columns: {list(non_numeric_cols)}")
                 df = df.drop(columns=non_numeric_cols)
 
             # Remove completely empty columns
             empty_cols = df.columns[df.isnull().all()]
             if len(empty_cols) > 0:
-                st.warning(f"Removing empty columns: {list(empty_cols)}")
+                # st.warning(f"Removing empty columns: {list(empty_cols)}")
                 df = df.drop(columns=empty_cols)
 
         return df
